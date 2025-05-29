@@ -19,6 +19,13 @@ SMTP_PORT = 587
 SMTP_USERNAME = "kata.chatbot@gmail.com"
 SMTP_PASSWORD = os.getenv("SMTP_PASSWORD")
 
+LANGUAGE = {
+    "zh": {
+        "email_subject": "您的投资人洞察报告",
+        "report_title": "🎯 投资人洞察报告"
+    }
+}
+
 # === Utility ===
 def compute_age(dob):
     try:
@@ -153,7 +160,7 @@ def investor_analyze_zh():
             "若您想加速获取建议，也可预约 15 分钟私人通话服务。🎯</p></div>"
         )
 
-        title = "<h4 style='text-align:center;font-size:24px;'>🎯 投资人洞察报告（简体）</h4>"
+        title = f"<h4 style='text-align:center;font-size:24px;'>{LANGUAGE['zh']['report_title']}</h4>"
 
         details = (
             f"<br><div style='font-size:14px;color:#666;'>"
@@ -174,7 +181,7 @@ def investor_analyze_zh():
         )
 
         full_html = title + details + chart_html + summary_html + tips_block + footer
-        send_email(full_html, "投资人洞察报告（简体）")
+        send_email(full_html, LANGUAGE['zh']['email_subject'])
 
         return jsonify({"html_result": title + chart_html + summary_html + tips_block + footer})
 
