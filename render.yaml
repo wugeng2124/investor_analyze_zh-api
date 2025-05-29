@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: investor-analyze-api
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: gunicorn investor_analyze_zh:app
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false

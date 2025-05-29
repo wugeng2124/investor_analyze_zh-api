@@ -1,0 +1,1 @@
+web: gunicorn investor_analyze_zh:app
